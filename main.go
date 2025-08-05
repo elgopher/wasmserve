@@ -23,7 +23,7 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/hajimehoshi/wasmserve/internal/wasmserveutil"
+	"github.com/elgopher/wasmserve/internal/wasmserveutil"
 )
 
 const mainWasm = "main.wasm"
@@ -58,6 +58,8 @@ var (
 	flagTags        = flag.String("tags", "", "Build tags")
 	flagAllowOrigin = flag.String("allow-origin", "", "Allow specified origin (or * for all origins) to make requests to this server")
 	flagOverlay     = flag.String("overlay", "", "Overwrite source files with a JSON file (see https://pkg.go.dev/cmd/go for more details)")
+
+	flagSharedArrayBuffer = flag.String("shared-array-buffer", "true", "Support SharedArrayBuffer")
 )
 
 var (
@@ -81,6 +83,11 @@ func ensureTmpOutputDir() (string, error) {
 func handle(w http.ResponseWriter, r *http.Request) {
 	if *flagAllowOrigin != "" {
 		w.Header().Set("Access-Control-Allow-Origin", *flagAllowOrigin)
+	}
+
+	if *flagSharedArrayBuffer == "true" {
+		w.Header().Set("Cross-Origin-Opener-Policy", "same-origin")
+		w.Header().Set("Cross-Origin-Embedder-Policy", "require-corp")
 	}
 
 	output, err := ensureTmpOutputDir()

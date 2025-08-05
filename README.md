@@ -1,3 +1,5 @@
+This is a fork of [github.com/hajimehoshi/wasmserve](https://github.com/hajimehoshi/wasmserve). Its adds support for SharedArrayBuffer.
+
 # WasmServe
 
 An HTTP server to test GOOS=js/GOARCH=wasm
@@ -9,7 +11,7 @@ WasmServe is sponsored by [SourceGraph](https://sourcegraph.com/).
 ## Installation
 
 ```sh
-go install github.com/hajimehoshi/wasmserve@latest
+go install github.com/elgopher/wasmserve@HEAD
 ```
 
 ## Usage
@@ -41,7 +43,7 @@ This will make the browser reload. You can add this command to a build script or
 Running a remote package
 
 ```sh
-wasmserve github.com/hajimehoshi/wasmserve/example
+wasmserve github.com/elgopher/wasmserve/example
 ```
 
 And open `http://localhost:8080/` on your browser.
@@ -51,7 +53,7 @@ And open `http://localhost:8080/` on your browser.
 Running a local package
 
 ```sh
-git clone https://github.com/hajimehoshi/ebiten # This might take several minutes.
+git clone https://github.com/elgopher/ebiten # This might take several minutes.
 cd ebiten
 wasmserve ./examples/sprites
 ```

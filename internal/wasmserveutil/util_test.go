@@ -6,7 +6,7 @@ package wasmserveutil_test
 import (
 	"testing"
 
-	"github.com/hajimehoshi/wasmserve/internal/wasmserveutil"
+	"github.com/elgopher/wasmserve/internal/wasmserveutil"
 )
 
 func TestWasmExecJSURL(t *testing.T) {
